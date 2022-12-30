@@ -54,7 +54,7 @@
     gradient-x1: 0;
     gradient-y1: 0;
     gradient-x2: 100%;
-    gradient-y2: 100%;
+    gradient-y2: 0;
     gradient-color1: #000000;
     gradient-color2: #000000;
 }

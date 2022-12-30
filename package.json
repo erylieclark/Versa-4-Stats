@@ -20,5 +20,8 @@
       }
     },
     "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build"
   }
 }
