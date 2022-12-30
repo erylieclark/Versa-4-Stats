@@ -5,6 +5,13 @@
   text-length: 32;
 }
 
+.baseSettings {
+  fill: white;
+  text-length: 32;
+  text-anchor: middle;
+  font-family: Seville-Condensed;
+}
+
 #background {
   width: 100%;
   height: 100%;
@@ -49,7 +56,7 @@
   y: 100%-18-15-5;
 }
 
-.simple-linear{
+.linear-gradient{
     gradient-type: linear;
     gradient-x1: 0;
     gradient-y1: 0;
@@ -57,4 +64,13 @@
     gradient-y2: 0;
     gradient-color1: #000000;
     gradient-color2: #000000;
+}
+
+.arc-style{
+    y: 9;
+    width: 75;
+    height: 75;
+    arc-width: 9;
+    fill: fb-extra-dark-gray;
+    start-angle: 0;
 }

@@ -1,6 +1,7 @@
 import * as document from "document";
 import * as messaging from "messaging";
 import * as simpleClock from "./features/clock";
+import * as progressData from "./features/progress_circles";
 
 let background = document.getElementById("background");
 let txtTime = document.getElementById("txtTime");
@@ -36,3 +37,5 @@ function clockCallback(data) {
   txtDate.text = data.date;
 }
 simpleClock.initialize("minutes", "longDate", clockCallback);
+
+/* --------- PROGRESS CIRCLES ---------- */

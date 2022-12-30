@@ -1,11 +1,26 @@
 <svg>
   <rect id="background" />
+
   <g id = "containerDateTime">
     <svg x="0%" y = "20%" height="135">
       <text id="txtTime" class="clock-text"/>
-      <gradientRect id="gradientDividerTop" class="divider divider-top simple-linear" />
-      <gradientRect id="gradientDividerBottom" class="divider divider-btm simple-linear" />
+      <gradientRect id="gradientDividerTop" class="divider divider-top linear-gradient" />
+      <gradientRect id="gradientDividerBottom" class="divider divider-btm linear-gradient" />
       <text id="txtDate" class="date-text"/>
     </svg>
   </g>
+
+  <!-- Progress Circles -->
+  <g id = "containerProgressCircles">
+    <svg x="0%" y = "60%" height="135">
+      <g id="steps">
+        <arc id="arcBack" x="25" class="arc-style" sweep-angle="360" />
+        <arc id="arcFront" x="25" class="arc-style" sweep-angle="50" />
+        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+        <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
+        <text id="dataCount" class="baseSettings" x="203" y="160" />
+      </g>
+    </svg>
+  </g>
+
 </svg>
