@@ -1,0 +1,11 @@
+<svg>
+  <rect id="background" />
+  <g id = "containerDateTime">
+    <svg x="0%" y = "20%" height="135">
+      <text id="txtTime" class="clock-text"/>
+      <gradientRect id="gradientDividerTop" class="divider divider-top simple-linear" />
+      <gradientRect id="gradientDividerBottom" class="divider divider-btm simple-linear" />
+      <text id="txtDate" class="date-text"/>
+    </svg>
+  </g>
+</svg>

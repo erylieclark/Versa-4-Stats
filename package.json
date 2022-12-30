@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~6.1.0",
+    "@fitbit/sdk-cli": "^1.7.3"
+  },
+  "fitbit": {
+    "appUUID": "0e9537e7-b6ef-46eb-b2c4-3088c6b027a0",
+    "appType": "clockface",
+    "appDisplayName": "Versa 4 Stats",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "Versa 4 Stats"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
