@@ -12,10 +12,24 @@
 
   <!-- Progress Circles -->
   <g id = "containerProgressCircles">
-    <svg x="0%" y = "60%" height="135">
-      <g id="steps">
+    <svg x="0%" y = "70%" height="135">
+      <g id="circle1">
         <arc id="arcBack" x="25" class="arc-style" sweep-angle="360" />
         <arc id="arcFront" x="25" class="arc-style" sweep-angle="50" />
+        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+        <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
+        <text id="dataCount" class="baseSettings" x="203" y="160" />
+      </g>
+      <g id="circle2">
+        <arc id="arcBack" x="75" class="arc-style" sweep-angle="360" />
+        <arc id="arcFront" x="75" class="arc-style" sweep-angle="50" />
+        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+        <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
+        <text id="dataCount" class="baseSettings" x="203" y="160" />
+      </g>
+      <g id="circle3">
+        <arc id="arcBack" x="125" class="arc-style" sweep-angle="360" />
+        <arc id="arcFront" x="125" class="arc-style" sweep-angle="50" />
         <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
         <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
         <text id="dataCount" class="baseSettings" x="203" y="160" />
