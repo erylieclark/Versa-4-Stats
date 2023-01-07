@@ -14,25 +14,25 @@
   <g id = "containerProgressCircles">
     <svg x="0%" y = "70%" height="135">
       <g id="circle1">
-        <arc id="arcBack" x="25" class="arc-style" sweep-angle="360" />
-        <arc id="arcFront" x="25" class="arc-style" sweep-angle="50" />
+        <arc id="arcBack" x="25" class="arc-style arc-style-back"  />
+        <arc id="arcFront" x="23" class="arc-style arc-style-front" />
         <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
         <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
-        <text id="dataCount" class="baseSettings" x="203" y="160" />
+        <text id="dataCount" class="activityText" x="203" y="160" />
       </g>
       <g id="circle2">
-        <arc id="arcBack" x="75" class="arc-style" sweep-angle="360" />
-        <arc id="arcFront" x="75" class="arc-style" sweep-angle="50" />
+        <arc id="arcBack" x="125" class="arc-style arc-style-back"  />
+        <arc id="arcFront" x="123" class="arc-style arc-style-front" />
         <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
         <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
-        <text id="dataCount" class="baseSettings" x="203" y="160" />
+        <text id="dataCount" class="activityText" x="203" y="160" />
       </g>
       <g id="circle3">
-        <arc id="arcBack" x="125" class="arc-style" sweep-angle="360" />
-        <arc id="arcFront" x="125" class="arc-style" sweep-angle="50" />
+        <arc id="arcBack" x="225" class="arc-style arc-style-back"  />
+        <arc id="arcFront" x="223" class="arc-style arc-style-front" />
         <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
         <image id="dataIcon" href="icons/steps_transparent.png" width="48" height="48" x="180" y="70" />
-        <text id="dataCount" class="baseSettings" x="203" y="160" />
+        <text id="dataCount" class="activityText" x="203" y="160" />
       </g>
     </svg>
   </g>
