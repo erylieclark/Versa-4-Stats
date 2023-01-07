@@ -1,4 +1,4 @@
-.defaultText {
+defaultText {
   font-size: 32;
   font-family: Seville-Regular;
   font-weight: regular;
@@ -85,4 +85,10 @@
     height: 86;
     arc-width: 5;
     sweep-angle: 360;
+}
+
+.image-style{
+    y: 0;
+    width: 90;
+    height: 90;
 }

@@ -41,6 +41,9 @@ messaging.peerSocket.onmessage = evt => {
     circle1.getElementById("arcFront").style.fill = color;
     circle2.getElementById("arcFront").style.fill = color;
     circle3.getElementById("arcFront").style.fill = color;
+    circle1.getElementById("circleFill").style.fill = color;
+    circle2.getElementById("circleFill").style.fill = color;
+    circle3.getElementById("circleFill").style.fill = color;
   }
   
   // If evt.data.key in circles
