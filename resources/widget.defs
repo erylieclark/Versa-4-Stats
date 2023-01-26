@@ -1,6 +1,8 @@
 <svg>
   <defs>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="progress_styles.css" />
+    <link rel="stylesheet" href="datetime_styles.css" />
+    <link rel="stylesheet" href="default_styles.css" />
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
   </defs>
 </svg>

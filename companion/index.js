@@ -18,6 +18,7 @@ settingsStorage.onchange = evt => {
     key: evt.key,
     newValue: evt.newValue
   };
+  console.log(`Companion Sending: ${JSON.stringify(data)}`);
   sendVal(data);
 };
 

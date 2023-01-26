@@ -3,28 +3,40 @@ import document from "document";
 import { me } from "appbit";
 
 // Presumably I can export this list as a global variable?
-let activities = ["steps", "distance", "calories", "activeMinutes"];
-let activityImages = {
-  "steps": {
-    open: "steps_transparent.png",
-    complete: "steps_complete.png"
+export let activities = ["Steps", "Steps", "Steps"];
+export let activityImages = {
+  "Steps": {
+    open: "icons/steps_transparent.png",
+    complete: "icons/steps_complete.png"
   },
-  "distance": {
-    open: "distance_transparent.png",
-    complete: "distance_complete.png"
+  "Distance": {
+    open: "icons/distance_transparent.png",
+    complete: "icons/distance_complete.png"
   },
-  "calories": {
-    open: "calories_transparent.png",
-    complete: "calories_complete.png"
+  "Calories": {
+    open: "icons/calories_transparent.png",
+    complete: "icons/calories_complete.png"
   },
-  "activeMinutes": {
-    open: "activeMinutes_transparent.png",
-    complete: "activeMinutes_complete.png"
+  "Active Minutes": {
+    open: "icons/activeMinutes_transparent.png",
+    complete: "icons/activeMinutes_complete.png"
   }
 }
 let dataTypes     = [ "circle1"];// "distance", "calories",
                       //"elevationGain", "activeMinutes" ];
 let dataProgress  = [];
+
+export function updateActivityImages(){
+    let arc = document.getElementById("progressCircles").firstChild;
+    for (let i = 0; i < 3; i++){
+      // Figure out which icon to update to
+      let icon = activityImages[activities[i]]
+      console.log(`Updating Circle ${i}: ${JSON.stringify(icon)}`);
+      arc.getElementById("dataIcon").href = icon.open;
+      arc = arc.nextSibling;
+    }
+
+}
 
 let getCurrentDataProgress = function(dataType) {
   let dataContainer = document.getElementById(dataType);

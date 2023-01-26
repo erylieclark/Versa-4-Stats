@@ -16,42 +16,39 @@ function mySettings(props) {
         />
       </Section>
 
-      <Section
-        title={<Text bold align="center">Activity 1</Text>}>
+      <Section>
         <Select
-          label={'multiselection'}
+          label={'Activity 1'}
           settingsKey="circle1"
             options={[
-              {name:"steps",          value:"1"},
-              {name:"Distance",       value:"2"},
-              {name:"Calories",       value:"3"},
-              {name:"Active Minutes", value:"4"}
+              {name:"Steps",          value:"0"},
+              {name:"Distance",       value:"1"},
+              {name:"Calories",       value:"2"},
+              {name:"Active Minutes", value:"3"}
             ]}
         />
       </Section>
-      <Section
-        title={<Text bold align="center">Activity 2</Text>}>
+      <Section>
         <Select
-          label={'multiselection'}
+          label={'Activity 2'}
           settingsKey="circle2"
             options={[
-              {name:"steps",          value:"1"},
-              {name:"Distance",       value:"2"},
-              {name:"Calories",       value:"3"},
-              {name:"Active Minutes", value:"4"}
+              {name:"Steps",          value:"0"},
+              {name:"Distance",       value:"1"},
+              {name:"Calories",       value:"2"},
+              {name:"Active Minutes", value:"3"}
             ]}
         />
       </Section>
-      <Section
-        title={<Text bold align="center">Activity 3</Text>}>
+      <Section>
         <Select
-          label={'multiselection'}
+          label={'Activity 3'}
           settingsKey="circle3"
             options={[
-              {name:"steps",          value:"1"},
-              {name:"Distance",       value:"2"},
-              {name:"Calories",       value:"3"},
-              {name:"Active Minutes", value:"4"}
+              {name:"Steps",          value:"0"},
+              {name:"Distance",       value:"1"},
+              {name:"Calories",       value:"2"},
+              {name:"Active Minutes", value:"3"}
             ]}
         />
       </Section>
