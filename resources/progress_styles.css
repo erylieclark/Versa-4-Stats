@@ -1,0 +1,33 @@
+.arc-style{
+    fill: fb-extra-dark-gray;
+    start-angle: 0;
+}
+
+.arc-style-front{
+    y: 0;
+    width: 90;
+    height: 90;
+    arc-width: 9;
+    sweep-angle: 250;
+}
+
+.arc-style-back{
+    y: 2;
+    width: 86;
+    height: 86;
+    arc-width: 5;
+    sweep-angle: 360;
+}
+
+.image-style{
+    y: 0;
+    width: 90;
+    height: 90;
+}
+
+.activityText {
+  fill: white;
+  text-length: 32;
+  text-anchor: middle;
+  font-family: Seville-Condensed;
+}

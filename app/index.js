@@ -10,52 +10,48 @@ let txtTime = document.getElementById("txtTime");
 let txtDate = document.getElementById("txtDate");
 let gradientDividerTop = document.getElementById("gradientDividerTop");
 let gradientDividerBottom = document.getElementById("gradientDividerBottom");
-let circle1 = document.getElementById("circle1");
-let circle2 = document.getElementById("circle2");
-let circle3 = document.getElementById("circle3");
-//let circle_elements = document.getElementsByClassName("arc-style");
 
-// Elements to change activity
-let circles = ["circle1", "circle2", "circle3"]
-// Default Values
-// Presumably I can export this list as a global variable?
-let activities = ["steps", "distance", "calories", "activeMinutes"]
 
 
 // Message is received
 messaging.peerSocket.onmessage = evt => {
-  console.log(`App received: ${JSON.stringify(evt)}`);
+  console.log(`App received: ${JSON.stringify(evt.data)}`);
 
   // Change the theme color of all elements
-  if (evt.data.key === "themeColor" && evt.data.newValue) {
-    // Get the Color
-    let color = JSON.parse(evt.data.newValue);
-    console.log(`Setting Theme Color: ${color}`);
+  if(evt.data.newValue){
+    let data = JSON.parse(evt.data.newValue);
+    switch(evt.data.key){
+      case "themeColor":
+        console.log(`Setting Theme Color: ${data}`);
 
-    // Date and Gradient Bars
-    txtDate.style.fill = color;
-    gradientDividerTop.gradient.colors.c2 = color;
-    gradientDividerBottom.gradient.colors.c2 = color;
+        // Date and Gradient Bars
+        txtDate.style.fill = data;
+        gradientDividerTop.gradient.colors.c2 = data;
+        gradientDividerBottom.gradient.colors.c2 = data;
 
-    // Progress Circles
-    circle1.getElementById("arcFront").style.fill = color;
-    circle2.getElementById("arcFront").style.fill = color;
-    circle3.getElementById("arcFront").style.fill = color;
-    circle1.getElementById("circleFill").style.fill = color;
-    circle2.getElementById("circleFill").style.fill = color;
-    circle3.getElementById("circleFill").style.fill = color;
-  }
-  
-  // If evt.data.key in circles
-  if (evt.data.key === "circle1" && evt.data.newValue) {
-    let activity = JSON.parse(evt.data.newValue);
-    console.log(`Setting Activity 1: ${activity}`);
-    // Get the index of the key in the circles list
-    //circles.forEach((item, index) => {
-    //  if evt.data.key === ""
-    //});
-    // Replace activities[index] with newvalue
-
+        // Progress Circles
+        let arc = document.getElementById("progressCircles").firstChild;
+        while(arc){
+          arc.getElementById("arcFront").style.fill = data;
+          arc.getElementById("circleFill").style.fill = data;
+          arc = arc.nextSibling;
+        }
+        break;
+      case "circle1":
+        console.log(`Circle1: ${data['values'][0]['name']}`);
+        updateActivity(data['values'][0]['name'], 0);
+        break;
+      case "circle2":
+        console.log(`Circle1: ${data['values'][0]['name']}`);
+        updateActivity(data['values'][0]['name'], 1);
+        break;
+      case "circle3":
+        console.log(`Circle1: ${data['values'][0]['name']}`);
+        updateActivity(data['values'][0]['name'], 2);
+        break;
+    }
+    // Change the image
+    activityArcs.updateActivityImages()
   }
 };
 
@@ -77,7 +73,16 @@ function clockCallback(data) {
 simpleClock.initialize("minutes", "longDate", clockCallback);
 
 /* --------- ACTIVITY ---------- */
-function activityCallback(data) {
+let updateActivity = function(activity, idx){
+    //let activity = newValue['values'][0][['name']];
+    console.log(`Setting Activity ${idx + 1}: ${activity}`);
+
+    // Set the new activity in the list
+    activityArcs.activities[idx] = activity;
+    console.log(`Activities List: ${activityArcs.activities}`);
+
+}
+/*function activityCallback(data) {
   activities.forEach((item, index) => {
     let img = item.firstChild;
     let txt = img.nextSibling;
@@ -85,3 +90,4 @@ function activityCallback(data) {
   });
 }
 activityArcs.initialize("seconds", activityCallback);
+*/

@@ -9,35 +9,64 @@
       <text id="txtDate" class="date-text"/>
     </svg>
   </g>
+  <defs>
+    <symbol id="circle">
+      <circle id="circleFill" cx="68" cy="45" r="43" fill="fb-aqua" />
+      <image id="dataIcon" href="icons/steps_transparent.png" class="image-style" />
+      <arc id="arcBack" class="arc-style arc-style-back"  />
+      <arc id="arcFront" class="arc-style arc-style-front" />
+      <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+      <text id="dataCount" class="activityText" y="160" />
+    </symbol>
+  </defs>
 
   <!-- Progress Circles -->
-  <g id = "containerProgressCircles">
-    <svg x="0%" y = "70%" height="135">
-      <g id="circle1">
-        <circle id="circleFill" cx="68" cy="45" r="43" fill="fb-aqua" />
-        <image id="dataIcon" href="icons/steps_transparent.png" class="image-style" x="23" />
-        <arc id="arcBack" x="25" class="arc-style arc-style-back"  />
-        <arc id="arcFront" x="23" class="arc-style arc-style-front" />
-        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
-        <text id="dataCount" class="activityText" x="203" y="160" />
-      </g>
-      <g id="circle2">
-        <circle id="circleFill" cx="168" cy="45" r="43" fill="fb-aqua" />
-        <image id="dataIcon" href="icons/steps_transparent.png" class="image-style" x="123" />
-        <arc id="arcBack" x="125" class="arc-style arc-style-back"  />
-        <arc id="arcFront" x="123" class="arc-style arc-style-front" />
-        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
-        <text id="dataCount" class="activityText" x="203" y="160" />
-      </g>
-      <g id="circle3">
-        <circle id="circleFill" cx="268" cy="45" r="43" fill="fb-aqua" />
-        <image id="dataIcon" href="icons/steps_complete.png" class="image-style" x="223" />
-        <arc id="arcBack" x="225" class="arc-style arc-style-back"  />
-        <arc id="arcFront" x="223" class="arc-style arc-style-front" />
-        <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
-        <text id="dataCount" class="activityText" x="203" y="160" />
-      </g>
-    </svg>
-  </g>
+  <svg id="progressCircles" x="0%" y = "70%" height="135">
+    <use href="#circle">
+      <set href="circleFill"  attributeName="cx"  to="68" />
+      <set href="dataIcon"    attributeName="x"   to="23"  />
+      <set href="arcBack"     attributeName="x"   to="25"  />
+      <set href="arcFront"    attributeName="x"   to="23"  />
+      <set href="dataCount"   attributeName="x"   to="23" />
+    </use>
+    <use href="#circle">
+      <set href="circleFill"  attributeName="cx"  to="168" />
+      <set href="dataIcon"    attributeName="x"   to="123"  />
+      <set href="arcBack"     attributeName="x"   to="125"  />
+      <set href="arcFront"    attributeName="x"   to="123"  />
+      <set href="dataCount"   attributeName="x"   to="123" />
+    </use>
+    <use href="#circle">
+      <set href="circleFill"  attributeName="cx"  to="268" />
+      <set href="dataIcon"    attributeName="x"   to="223"  />
+      <set href="arcBack"     attributeName="x"   to="225"  />
+      <set href="arcFront"    attributeName="x"   to="223"  />
+      <set href="dataCount"   attributeName="x"   to="223" />
+    </use>
+    <g id="circle1" display="none">
+      <circle id="circleFill" cx="68" cy="45" r="43" fill="fb-aqua" />
+      <image id="dataIcon" href="icons/steps_transparent.png" class="image-style" x="23" />
+      <arc id="arcBack" x="25" class="arc-style arc-style-back"  />
+      <arc id="arcFront" x="23" class="arc-style arc-style-front" />
+      <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+      <text id="dataCount" class="activityText" x="203" y="160" />
+    </g>
+    <g id="circle2" display="none">
+      <circle id="circleFill" cx="168" cy="45" r="43" fill="fb-aqua" />
+      <image id="dataIcon" href="icons/steps_transparent.png" class="image-style" x="123" />
+      <arc id="arcBack" x="125" class="arc-style arc-style-back"  />
+      <arc id="arcFront" x="123" class="arc-style arc-style-front" />
+      <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+      <text id="dataCount" class="activityText" x="203" y="160" />
+    </g>
+    <g id="circle3" display="none">
+      <circle id="circleFill" cx="268" cy="45" r="43" fill="fb-aqua" />
+      <image id="dataIcon" href="icons/steps_complete.png" class="image-style" x="223" />
+      <arc id="arcBack" x="225" class="arc-style arc-style-back"  />
+      <arc id="arcFront" x="223" class="arc-style arc-style-front" />
+      <!--image x="113" y="10" width="181" height="186" href="icons/steps_transparent.png" /-->
+      <text id="dataCount" class="activityText" x="203" y="160" />
+    </g>
+  </svg>
 
 </svg>
