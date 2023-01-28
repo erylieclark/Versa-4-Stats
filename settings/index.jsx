@@ -19,7 +19,7 @@ function mySettings(props) {
       <Section>
         <Select
           label={'Activity 1'}
-          settingsKey="circle1"
+          settingsKey="circle0"
             options={[
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},
@@ -31,7 +31,7 @@ function mySettings(props) {
       <Section>
         <Select
           label={'Activity 2'}
-          settingsKey="circle2"
+          settingsKey="circle1"
             options={[
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},
@@ -43,7 +43,7 @@ function mySettings(props) {
       <Section>
         <Select
           label={'Activity 3'}
-          settingsKey="circle3"
+          settingsKey="circle2"
             options={[
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},

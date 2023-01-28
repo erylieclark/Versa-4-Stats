@@ -35,7 +35,6 @@ export function updateActivityImages(){
       arc.getElementById("dataIcon").href = icon.open;
       arc = arc.nextSibling;
     }
-
 }
 
 let getCurrentDataProgress = function(dataType) {

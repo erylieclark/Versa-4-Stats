@@ -20,6 +20,7 @@ messaging.peerSocket.onmessage = evt => {
   // Change the theme color of all elements
   if(evt.data.newValue){
     let data = JSON.parse(evt.data.newValue);
+    let old_data = JSON.parse(evt.data.oldValue);
     switch(evt.data.key){
       case "themeColor":
         console.log(`Setting Theme Color: ${data}`);
@@ -37,16 +38,16 @@ messaging.peerSocket.onmessage = evt => {
           arc = arc.nextSibling;
         }
         break;
-      case "circle1":
-        console.log(`Circle1: ${data['values'][0]['name']}`);
+      case "circle0":
+        console.log(`Circle0: ${data['values'][0]['name']}`);
         updateActivity(data['values'][0]['name'], 0);
         break;
-      case "circle2":
+      case "circle1":
         console.log(`Circle1: ${data['values'][0]['name']}`);
         updateActivity(data['values'][0]['name'], 1);
         break;
-      case "circle3":
-        console.log(`Circle1: ${data['values'][0]['name']}`);
+      case "circle2":
+        console.log(`Circle2: ${data['values'][0]['name']}`);
         updateActivity(data['values'][0]['name'], 2);
         break;
     }
