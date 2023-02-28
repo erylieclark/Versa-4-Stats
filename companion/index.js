@@ -16,7 +16,8 @@ messaging.peerSocket.onclose = () => {
 settingsStorage.onchange = evt => {
   let data = {
     key: evt.key,
-    newValue: evt.newValue
+    newValue: evt.newValue,
+    oldValue: evt.oldValue
   };
   console.log(`Companion Sending: ${JSON.stringify(data)}`);
   sendVal(data);

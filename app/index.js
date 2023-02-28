@@ -17,38 +17,43 @@ let gradientDividerBottom = document.getElementById("gradientDividerBottom");
 messaging.peerSocket.onmessage = evt => {
   console.log(`App received: ${JSON.stringify(evt.data)}`);
 
+  if(evt.data.oldValue){
+    let old_data = JSON.parse(evt.data.oldValue);
+    console.log(`Old Data: ${old_data}`);
+  }
+
   // Change the theme color of all elements
   if(evt.data.newValue){
-    let data = JSON.parse(evt.data.newValue);
-    let old_data = JSON.parse(evt.data.oldValue);
+    let new_data = JSON.parse(evt.data.newValue);
+    console.log(`New Data: ${new_data}`);
     switch(evt.data.key){
       case "themeColor":
-        console.log(`Setting Theme Color: ${data}`);
+        console.log(`Setting Theme Color: ${new_data}`);
 
         // Date and Gradient Bars
-        txtDate.style.fill = data;
-        gradientDividerTop.gradient.colors.c2 = data;
-        gradientDividerBottom.gradient.colors.c2 = data;
+        txtDate.style.fill = new_data;
+        gradientDividerTop.gradient.colors.c2 = new_data;
+        gradientDividerBottom.gradient.colors.c2 = new_data;
 
         // Progress Circles
         let arc = document.getElementById("progressCircles").firstChild;
         while(arc){
-          arc.getElementById("arcFront").style.fill = data;
-          arc.getElementById("circleFill").style.fill = data;
+          arc.getElementById("arcFront").style.fill = new_data;
+          arc.getElementById("circleFill").style.fill = new_data;
           arc = arc.nextSibling;
         }
         break;
       case "circle0":
-        console.log(`Circle0: ${data['values'][0]['name']}`);
-        updateActivity(data['values'][0]['name'], 0);
+        console.log(`Circle0: ${new_data['values'][0]['name']}`);
+        updateActivity(new_data['values'][0]['name'], 0);
         break;
       case "circle1":
-        console.log(`Circle1: ${data['values'][0]['name']}`);
-        updateActivity(data['values'][0]['name'], 1);
+        console.log(`Circle1: ${new_data['values'][0]['name']}`);
+        updateActivity(new_data['values'][0]['name'], 1);
         break;
       case "circle2":
-        console.log(`Circle2: ${data['values'][0]['name']}`);
-        updateActivity(data['values'][0]['name'], 2);
+        console.log(`Circle2: ${new_data['values'][0]['name']}`);
+        updateActivity(new_data['values'][0]['name'], 2);
         break;
     }
     // Change the image
