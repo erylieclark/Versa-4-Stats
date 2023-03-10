@@ -24,7 +24,7 @@ function mySettings(props) {
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},
               {name:"Calories",       value:"2"},
-              {name:"Active Minutes", value:"3"}
+              {name:"Active Zone Minutes", value:"3"}
             ]}
         />
       </Section>
@@ -36,7 +36,7 @@ function mySettings(props) {
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},
               {name:"Calories",       value:"2"},
-              {name:"Active Minutes", value:"3"}
+              {name:"Active Zone Minutes", value:"3"}
             ]}
         />
       </Section>
@@ -48,7 +48,7 @@ function mySettings(props) {
               {name:"Steps",          value:"0"},
               {name:"Distance",       value:"1"},
               {name:"Calories",       value:"2"},
-              {name:"Active Minutes", value:"3"}
+              {name:"Active Zone Minutes", value:"3"}
             ]}
         />
       </Section>

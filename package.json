@@ -9,7 +9,11 @@
     "appDisplayName": "Versa 4 Stats",
     "iconFile": "resources/icon.png",
     "wipeColor": "#607d8b",
-    "requestedPermissions": [],
+    "requestedPermissions": [
+      "access_activity",
+      "access_heart_rate",
+      "access_user_profile"
+    ],
     "buildTargets": [
       "atlas",
       "vulcan"

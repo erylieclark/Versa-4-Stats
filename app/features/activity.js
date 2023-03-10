@@ -1,10 +1,13 @@
 // Set up all necessary variables
 import document from "document";
 import { me } from "appbit";
+import { today, goals } from "user-activity";
+import clock from "clock";
+import { units } from "user-settings";
 
-// Presumably I can export this list as a global variable?
+// A global list for keeping track of what is displayed
 export let activities = ["Steps", "Steps", "Steps"];
-export let activityImages = {
+let activityImages = {
   "Steps": {
     open: "icons/steps_transparent.png",
     complete: "icons/steps_complete.png"
@@ -17,14 +20,13 @@ export let activityImages = {
     open: "icons/calories_transparent.png",
     complete: "icons/calories_complete.png"
   },
-  "Active Minutes": {
+  "Active Zone Minutes": {
     open: "icons/activeMinutes_transparent.png",
     complete: "icons/activeMinutes_complete.png"
   }
 }
-let dataTypes     = [ "circle1"];// "distance", "calories",
-                      //"elevationGain", "activeMinutes" ];
-let dataProgress  = [];
+
+let activityCallback;
 
 export function updateActivityImages(){
     let arc = document.getElementById("progressCircles").firstChild;
@@ -37,51 +39,6 @@ export function updateActivityImages(){
     }
 }
 
-let getCurrentDataProgress = function(dataType) {
-  let dataContainer = document.getElementById(dataType);
-  return {
-    dataType: dataType,
-    dataContainer: dataContainer,
-    arcBack: dataContainer.getElementById("arcBack"),
-    arcFront: dataContainer.getElementById("arcFront"),
-    dataCount: dataContainer.getElementById("dataCount"),
-    dataIcon: dataContainer.getElementById("dataIcon"),
-  }
-}
-
-for(var i=0; i < dataTypes.length; i++) {
-  var currentData = dataTypes[i];
-  dataProgress.push(getCurrentDataProgress(currentData));
-}
-
-// Refresh data, all other logic is in separate files
-function refreshData(type) {
-  let currentType = type.dataType;
-  
-  let currentDataProg = (userActivity.today.adjusted[currentType] || 0);
-  let currentDataGoal = userActivity.goals[currentType];
-  
-  let currentDataArc = (currentDataProg / currentDataGoal) * 360;
-  
-  if (currentDataArc > 360) {
-    currentDataArc = 360;
-  }
-  
-  if(currentType==="distance") {
-    currentDataProg = (currentDataProg * 0.000621371192).toFixed(2);
-  }
-  
-  type.arcFront.sweepAngle = currentDataArc;
-  type.dataCount.text = currentDataProg;
-}
-
-export function refreshAllData() {
-  for(var i=0; i<dataTypes.length; i++) {
-    refreshData(dataProgress[i]);
-  }
-}
-
-let activityCallback;
 
 export function initialize(granularity, callback) {
   if (me.permissions.granted("access_activity")) {
@@ -91,22 +48,22 @@ export function initialize(granularity, callback) {
   } else {
     console.log("Denied User Activity permission");
     callback({
-      steps: getDeniedStats(),
-      calories: getDeniedStats(),
-      distance: getDeniedStats(),
-      elevationGain: getDeniedStats(),
-      activeMinutes: getDeniedStats()
+      "Steps": getDeniedStats(),
+      "Calories": getDeniedStats(),
+      "Distance": getDeniedStats(),
+      "ElevationGain": getDeniedStats(),
+      "Active Zone Minutes": getDeniedStats()
     });
   }
 }
 
 let activityData = () => {
   return {  
-    steps: getSteps(),
-    calories: getCalories(),
-    distance: getDistance(),
-    elevationGain: getElevationGain(),
-    activeMinutes: getActiveMinutes()
+    "Steps": getSteps(),
+    "Calories": getCalories(),
+    "Distance": getDistance(),
+    "ElevationGain": getElevationGain(),
+    "Active Zone Minutes": getActiveZoneMinutes(),
   };  
 }
 
@@ -114,48 +71,84 @@ function tickHandler(evt) {
   activityCallback(activityData());
 }
 
-function getActiveMinutes() {
-  let val = (today.adjusted.activeMinutes || 0);
+function getSweepAngle(progress, goal){
+  let sweepAngle = (progress / goal) * 360;
+  
+  if (sweepAngle > 360) {
+    sweepAngle = 360;
+  }
+
+  return sweepAngle;
+}
+
+function getActiveZoneMinutes() {
+  let currentDataProg = (today.adjusted.activeZoneMinutes.total || 0);
+  let currentDataGoal = goals.activeZoneMinutes.total;
+  let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
+
   return {
-    raw: val,
-    pretty: (val < 60 ? "" : Math.floor(val/60) + "h,") + ("0" + (val%60)).slice("-2") + "m"
+    sweep: currentDataArc,
+    raw: currentDataProg,
+    goal: currentDataGoal,
+    pretty: (currentDataProg < 60 ? "" : Math.floor(currentDataProg/60) + "h,") + ("0" + (currentDataProg%60)).slice("-2") + "m"
   }
 }
 
 function getCalories() {
-  let val = (today.adjusted.calories || 0);
+  let currentDataProg = (today.adjusted.calories || 0);
+  let currentDataGoal = goals.calories;
+  let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
+  
   return {
-    raw: val,
-    pretty: val > 999 ? Math.floor(val/1000) + "," + ("00"+(val%1000)).slice(-3) : val
+    sweep: currentDataArc,
+    raw: currentDataProg,
+    goal: currentDataGoal,
+    pretty: currentDataProg > 999 ? Math.floor(currentDataProg/1000) + "," + ("00"+(currentDataProg%1000)).slice(-3) : currentDataProg 
   }
 }
 
 function getDistance() {
-  let val = (today.adjusted.distance || 0) / 1000;
+  let currentDataProg = (today.adjusted.distance || 0);
+  let currentDataGoal = goals.distance;
+  let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
+  
+  currentDataProg = currentDataProg / 1000;
+
   let u = "km";
   if(units.distance === "us") {
-    val *= 0.621371;
+    currentDataProg *= 0.621371;
     u = "mi";
   }
   return {
-    raw: val,
-    pretty: `${val.toFixed(2)}${u}`
+    sweep: currentDataArc,
+    raw: currentDataProg,
+    goal: currentDataGoal,
+    pretty: `${currentDataProg.toFixed(2)}${u}`
   }
 }
 
 function getElevationGain() {
-  let val = today.adjusted.elevationGain || 0;
+  let currentDataProg = (today.adjusted.elevationGain || 0);
+  let currentDataGoal = goals.elevationGain;
+  let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
   return {
-    raw: val,
-    pretty: `+${val}`
+    sweep: currentDataArc,
+    raw: currentDataProg,
+    goal: currentDataGoal,
+    pretty: `+${currentDataProg}`
   }
 }
 
 function getSteps() {
-  let val = (today.adjusted.steps || 0);
+  let currentDataProg = (today.adjusted.steps || 0);
+  let currentDataGoal = goals.steps;
+  let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
+
   return {
-    raw: val,
-    pretty: val > 999 ? Math.floor(val/1000) + "," + ("00"+(val%1000)).slice(-3) : val
+    sweep: currentDataArc,
+    raw: currentDataProg,
+    goal: currentDataGoal,
+    pretty: currentDataProg > 999 ? Math.floor(currentDataProg/1000) + "," + ("00"+(currentDataProg%1000)).slice(-3) : currentDataProg 
   }
 }
 
