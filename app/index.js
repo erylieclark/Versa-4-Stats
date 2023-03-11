@@ -2,6 +2,7 @@ import * as document from "document";
 import * as messaging from "messaging";
 import * as simpleClock from "./features/clock";
 import * as activityArcs from "./features/activity";
+import { goals } from "user-activity";
 
 let background = document.getElementById("background");
 
@@ -68,6 +69,11 @@ messaging.peerSocket.onopen = () => {
 // Message socket closes
 messaging.peerSocket.onclose = () => {
   console.log("App Socket Closed");
+};
+
+// An activity goal was reached
+goals.onreachgoal = () => {
+  activityArcs.updateActivityImages()
 };
 
 /* --------- CLOCK ---------- */
