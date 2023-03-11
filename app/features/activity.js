@@ -20,6 +20,10 @@ let activityImages = {
     open: "icons/calories_transparent.png",
     complete: "icons/calories_complete.png"
   },
+  "Elevation Gain": {
+    open: "icons/activeMinutes_transparent.png",
+    complete: "icons/activeMinutes_complete.png"
+  },
   "Active Zone Minutes": {
     open: "icons/activeMinutes_transparent.png",
     complete: "icons/activeMinutes_complete.png"
@@ -30,11 +34,12 @@ let activityCallback;
 
 export function updateActivityImages(){
     let arc = document.getElementById("progressCircles").firstChild;
+    let data = activityData();
     for (let i = 0; i < 3; i++){
       // Figure out which icon to update to
-      let icon = activityImages[activities[i]]
-      console.log(`Updating Circle ${i}: ${JSON.stringify(icon)}`);
-      arc.getElementById("dataIcon").href = icon.open;
+      let activityData = data[activities[i]];
+      console.log(`Updating Circle ${i}: ${JSON.stringify(activityData.icon)}`);
+      arc.getElementById("dataIcon").href = activityData.icon;
       arc = arc.nextSibling;
     }
 }
@@ -51,7 +56,7 @@ export function initialize(granularity, callback) {
       "Steps": getDeniedStats(),
       "Calories": getDeniedStats(),
       "Distance": getDeniedStats(),
-      "ElevationGain": getDeniedStats(),
+      "Elevation Gain": getDeniedStats(),
       "Active Zone Minutes": getDeniedStats()
     });
   }
@@ -62,7 +67,7 @@ let activityData = () => {
     "Steps": getSteps(),
     "Calories": getCalories(),
     "Distance": getDistance(),
-    "ElevationGain": getElevationGain(),
+    "Elevation Gain": getElevationGain(),
     "Active Zone Minutes": getActiveZoneMinutes(),
   };  
 }
@@ -81,6 +86,14 @@ function getSweepAngle(progress, goal){
   return sweepAngle;
 }
 
+function setActivityIcon(activity, sweep){
+  let icon = activityImages[activity].open;
+  if (sweep >= 360){
+    icon = activityImages[activity].complete;
+  }
+  return icon;
+}
+
 function getActiveZoneMinutes() {
   let currentDataProg = (today.adjusted.activeZoneMinutes.total || 0);
   let currentDataGoal = goals.activeZoneMinutes.total;
@@ -88,6 +101,7 @@ function getActiveZoneMinutes() {
 
   return {
     sweep: currentDataArc,
+    icon: setActivityIcon("Active Zone Minutes", currentDataArc),
     raw: currentDataProg,
     goal: currentDataGoal,
     pretty: (currentDataProg < 60 ? "" : Math.floor(currentDataProg/60) + "h,") + ("0" + (currentDataProg%60)).slice("-2") + "m"
@@ -101,6 +115,7 @@ function getCalories() {
   
   return {
     sweep: currentDataArc,
+    icon: setActivityIcon("Calories", currentDataArc),
     raw: currentDataProg,
     goal: currentDataGoal,
     pretty: currentDataProg > 999 ? Math.floor(currentDataProg/1000) + "," + ("00"+(currentDataProg%1000)).slice(-3) : currentDataProg 
@@ -121,6 +136,7 @@ function getDistance() {
   }
   return {
     sweep: currentDataArc,
+    icon: setActivityIcon("Distance", currentDataArc),
     raw: currentDataProg,
     goal: currentDataGoal,
     pretty: `${currentDataProg.toFixed(2)}${u}`
@@ -133,6 +149,7 @@ function getElevationGain() {
   let currentDataArc = getSweepAngle(currentDataProg, currentDataGoal);
   return {
     sweep: currentDataArc,
+    icon: setActivityIcon("Elevation Gain", currentDataArc),
     raw: currentDataProg,
     goal: currentDataGoal,
     pretty: `+${currentDataProg}`
@@ -146,6 +163,7 @@ function getSteps() {
 
   return {
     sweep: currentDataArc,
+    icon: setActivityIcon("Steps", currentDataArc),
     raw: currentDataProg,
     goal: currentDataGoal,
     pretty: currentDataProg > 999 ? Math.floor(currentDataProg/1000) + "," + ("00"+(currentDataProg%1000)).slice(-3) : currentDataProg 
