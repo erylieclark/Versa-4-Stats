@@ -33,6 +33,7 @@ function tickHandler(evt) {
   let dayNumber = zeroPad(today.getDate());
 
   let hours = today.getHours();
+  //TODO: update the preferences on startup
   if (preferences.clockDisplay === "12h") {
     // 12h format
     hours = hours % 12 || 12;
